@@ -1,1 +1,1 @@
-# spring-example
+# spring-sample
