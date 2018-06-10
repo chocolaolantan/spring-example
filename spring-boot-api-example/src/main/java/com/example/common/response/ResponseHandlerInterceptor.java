@@ -1,8 +1,5 @@
 package com.example.common.response;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
@@ -24,10 +21,7 @@ public class ResponseHandlerInterceptor
 	@ExceptionHandler
 	public ExceptionResponseBean handleThrowable( Throwable t )
 	{
-		List<String> errors = new ArrayList<>();
-		errors.add( t.getMessage() );
-
-		ExceptionResponseBean response = new ExceptionResponseBean( t.getMessage(), errors );
+		ExceptionResponseBean response = new ExceptionResponseBean( t.getMessage(), "E000000" );
 
 		log.error( "予期せぬエラー発生", t );
 

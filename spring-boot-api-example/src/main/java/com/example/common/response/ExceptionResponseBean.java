@@ -1,7 +1,5 @@
 package com.example.common.response;
 
-import java.util.List;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
@@ -18,5 +16,5 @@ public class ExceptionResponseBean extends ResponseBean
 	/** メッセージ. */
 	private String message;
 	/** エラーコード. */
-	private List<String> errors;
+	private String errorCode;
 }

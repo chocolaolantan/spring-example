@@ -26,6 +26,7 @@ import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.annotation.ModelAttributeMethodProcessor;
 
+import com.example.common.util.RequestResponseUtils;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -93,7 +94,7 @@ public class RequestConvertProcessor extends ModelAttributeMethodProcessor
 			requestModel = createPostRequestBean( requestModelConstructor, request );
 		}
 
-		log.info( "HTTPリクエストボディ : {\"body\":{}}", mapper.writeValueAsString( requestModel ) );
+		log.info( "HTTPリクエストボディ : {\"body\":{}}", RequestResponseUtils.toJson( requestModel ) );
 
 		return requestModel;
 	}

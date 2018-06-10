@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.api.test.bean.TestRequest;
 import com.example.api.test.bean.TestResponse;
+import com.example.common.util.RequestResponseUtils;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -28,16 +28,15 @@ public class RequestController
 	 * @throws JsonProcessingException
 	 */
 	@RequestMapping( value = "/get", method = RequestMethod.GET,  produces = MediaType.APPLICATION_JSON_UTF8_VALUE )
-	public TestResponse get( TestRequest request ) throws JsonProcessingException
+	public TestResponse get( TestRequest request )
 	{
-		log.debug( "start." );
-
-		ObjectMapper mapper = new ObjectMapper();
+		log.debug( "request : {}", RequestResponseUtils.toJson( request ) );
 
 		TestResponse response = new TestResponse();
-		response.setText( "request : " + mapper.writeValueAsString( request ) );
+		response.setText( "request : " + RequestResponseUtils.toJson( request ) );
 
-		log.debug( "finish." );
+		log.debug( "response : {}", RequestResponseUtils.toJson( response ) );
+
 		return response;
 	}
 
@@ -48,16 +47,15 @@ public class RequestController
 	 * @throws JsonProcessingException
 	 */
 	@RequestMapping( value = "/post", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE )
-	public TestResponse post( TestRequest request ) throws JsonProcessingException
+	public TestResponse post( TestRequest request )
 	{
-		log.debug( "start." );
-
-		ObjectMapper mapper = new ObjectMapper();
+		log.debug( "request : {}", RequestResponseUtils.toJson( request ) );
 
 		TestResponse response = new TestResponse();
-		response.setText( "request : " + mapper.writeValueAsString( request ) );
+		response.setText( "request : " + RequestResponseUtils.toJson( request ) );
 
-		log.debug( "finish." );
+		log.debug( "response : {}", RequestResponseUtils.toJson( response ) );
+
 		return response;
 	}
 }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 import com.example.common.annotation.NoStatusResponse;
+import com.example.common.util.RequestResponseUtils;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -80,7 +81,7 @@ public class ResponseConvertProcessor implements ResponseBodyAdvice<Object>
 			((ResponseBean) body).setStatus(ResponseStatus.SUCCESS);
 		}
 
-		log.info( "レスポンス内容 : {}", body );
+		log.info( "レスポンス内容 : {}", RequestResponseUtils.toJson( body ) );
 
 		return body;
 	}
