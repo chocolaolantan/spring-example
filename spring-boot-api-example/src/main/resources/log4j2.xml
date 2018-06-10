@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="off">
+	<!-- ログの出力先と出力フォーマットを指定する -->
+	<Appenders>
+		<Console name="console-appender" target="SYSTEM_OUT">
+			<PatternLayout
+				pattern="%d{yyyy/MM/dd HH:mm:ss.SSS} [%t] %-5p %C{1}\tL:%L\t- %m%n" />
+		</Console>
+
+		<RollingFile name="file-appender"
+			fileName="./logs/example/api-all.log"
+			filePattern="./logs/example/bak/api-all-%d{yyyy-MM-dd}-%i.zip">
+			<PatternLayout
+				pattern="%d{yyyy/MM/dd HH:mm:ss.SSS} [%t] %-5p %C{1}\tL:%L\t- %m%n" />
+			<Policies>
+				<OnStartupTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="100 KB" />
+			</Policies>
+			<DefaultRolloverStrategy max="10" />
+		</RollingFile>
+	</Appenders>
+
+	<!-- パッケージごとにAppenderとログレベルを組み合わせる -->
+	<Loggers>
+		<Logger name="com.example" level="debug" />
+		<Root level="warn">
+			<AppenderRef ref="console-appender" />
+			<AppenderRef ref="file-appender" />
+		</Root>
+	</Loggers>
+</Configuration>
